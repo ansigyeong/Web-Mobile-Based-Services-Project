@@ -146,7 +146,35 @@
 
 ### 에러
 
+1. vue 3D carousel
 
+- page를 처음 열었을 때 carousel이 세로 선으로 뜨고, 창을 최소화, 최대화 등을 해야 제대로 뜸
+
+  ![3d carousel error](images/3d carousel error 1.png)
+
+  - 에러 해결 시도
+
+    - 다른 3d carousel => 똑같은 에러가 발생함
+
+  - 에러 해결
+
+    - 최상단 div에 있는 class="container"를 지우니 제대로 동작함
+
+    
+
+- nav바가 활성화되었을 때 carousel이 접힘
+
+  ![3d carousel error](images/3d carousel error 2.png)
+
+  - 에러 해결
+
+    ```vue
+    <carousel-3d style="height: 550px !important;">
+    ...
+    </carousel-3d>
+    ```
+
+  
 
 ## 💻 프로젝트 후기
 
@@ -167,6 +195,7 @@
 ### 팀 단위 개발 후기
 
 - Jira & git flow 
+- Agile
 - 1학기 관통 프로젝트에서는 팀 단위 개발을 할 때 스스로 코딩 능력이 부족하다고 생각해서 많이 위축되어 있었다. 다른 팀원이 짜놓은 코드를 내가 망칠 것 같은 두려움에 API나 데이터 조작과 같이 메인 코드에 영향을 주지 않는 개발만 했다. 2학기 프로젝트가 시작되고 프로젝트를 할 때 더 이상 위축되어 있기 싫었다. 어차피 배우는 단계이므로 에러가 나는 상황을 두려워 하지 말자고 다짐했다. 프로젝트를 통해 개발 능력뿐만 아니라 자신감, 협업 능력 등 많은 것을 얻어가고 싶었고, 내 역량을 펼치고 싶었다. git과 jira를 통한 협업을 본격적으로 시작하면서 책임감이 생겼다. 
 
  

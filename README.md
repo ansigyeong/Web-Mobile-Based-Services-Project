@@ -12,14 +12,14 @@
 
 1. 기본 HTML, CSS, JavaScript(ES6)에 대한 이해
 2. 웹 프로젝트 구성 이해
-
 3. SPA(Single Page Application) 이해
 4. Vue.js에 대한 이해
 5. Java Spring Framework에 대한 이해
-
 6. Responsive Web(반응형 웹) 이해
-
 7. 사용자 친화적이고 다양한 디바이스에 최적화 된 웹 구현
+8. 개성있는 기능 & 디자인 구현
+9. 팀 프로젝트(개발 협업) 경험
+10. 요구사항 및 데드라인에 맞춰서 개발
 
 
 
@@ -27,6 +27,7 @@
 
 - Frontend: `Vue.js`의 전반적인 구조와 동작 방식을 이해하여 개발 => 컴포넌트 단위의 관리로 유지보수와 재사용성이 높음
 - Backend: `Java Spring Boot`를 사용하여 유저 인증, 파일 업로드 등 다양한 기술을 구현
+- Frontend와 Backend 간에는 REST API로 통신
 
 
 
@@ -51,6 +52,17 @@
 ### 7. Swagger
 
 ### 8. Docker
+
+### 9. 그 외
+
+- 프로젝트 일정 관리
+  - 명세서 기반으로 지라 이슈 등록 및 스프린트 계획
+- 협업 시 소통 방법
+  - Daily Stand-up Meeting, 데일리 스크럼 미팅
+- 병합 시 충돌 최소화 방법
+  - 작은 Commit과 잦은 Merge Request로 코드를 자주 병합
+
+
 
 
 

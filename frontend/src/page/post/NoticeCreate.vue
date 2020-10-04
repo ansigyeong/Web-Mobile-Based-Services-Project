@@ -1,0 +1,116 @@
+<template>
+  <div class="container">
+    <h1>공지사항 작성</h1>
+    <v-form>
+      <v-text-field v-model="title"
+        label="제목을 입력해주세요"
+        single-line
+        full-width
+        hide-details
+      ></v-text-field>
+     <div>
+      <editor api-key="vem3wnp12tvfllgyuf92uzd6e04f9ddz4ke9mzv8uh71ctgq" :init="{
+          height: 500,
+          menubar: ['file edit view insert format tools'],
+          plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount codesample'
+          ],
+          toolbar:
+            'undo redo codesample | formatselect | bold italic backcolor | \
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | removeformat | help'
+        }" v-model="contents"  />
+    </div>
+      <v-divider></v-divider>
+      <v-card-actions style="float:right">
+        <v-btn text @click="back">취소</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" text @click="submit">글 등록</v-btn>
+      </v-card-actions>
+    </v-form>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import Editor from '@tinymce/tinymce-vue'
+  export default {
+    name: 'AskQuestion',
+    components: {
+        'editor': Editor
+    },
+    data () {
+      return {
+        contents: '',
+        title: null,
+        editorText: 'This is initialValue.',
+        editorOptions: {
+          hideModeSwitch: true
+        },
+      }
+    },
+    methods: {
+      back() {
+        this.$router.push('/notice')
+      },
+      submit() {
+        let config = {
+          headers: {
+            "ACCESS-TOKEN": this.$store.state.token
+          }
+        }
+        let body = {
+          contents: this.contents,
+          title: this.title,
+        }
+        if (this.noblank(this.title) == '' | this.title == null){
+          swal('', '제목을 입력해 주세요.', 'warning')
+        }
+        else if (this.noblank(this.contents) == '' | this.contents == null){
+          swal('', '내용을 입력해 주세요.', 'warning')
+        }
+        else {
+          axios.post(this.$store.state.base_url + '/notice', body, config)
+          .then((response) => {
+            swal('', '글이 성공적으로 작성 되었습니다.', 'success')
+            this.$router.push('/notice')
+          })
+          .catch((error) => {
+                swal('', '세션 만료.\n다시 로그인 해주세요.', 'warning')
+                this.$cookies.remove('auth-token')
+                this.$store.commit('checkToken',this.$cookies.get('auth-token'))
+                this.$store.commit('checklogin',this.$cookies.isKey('auth-token'))
+                this.$router.push('/login')
+          })
+        }
+      },
+      noblank(contents){
+        return contents.replace(/&nbsp;/g, "").replace(/(\s*)/g, "").replace(/(<([^>]+)>)/ig,"")
+      }
+    },
+    computed: {
+      progress () {
+        return Math.min(100, this.value.length * 10)
+      },
+      color () {
+        return ['error', 'warning', 'success'][Math.floor(this.progress / 40)]
+      },
+    },
+  }
+</script>
+
+<style scoped>
+            @font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  * {
+      font-family: 'CookieRun-Regular';
+  }
+            
+</style>
